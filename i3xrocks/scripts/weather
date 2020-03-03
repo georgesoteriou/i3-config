@@ -1,0 +1,7 @@
+#!/bin/sh
+
+curl http://wttr.in/?format=1
+
+if [ ! -z "$button"  ]; then
+    /bin/gnome-weather
+fi
