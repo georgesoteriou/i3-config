@@ -28,17 +28,23 @@ markup=pango
 color=xresource:i3xrocks.value.color
 label_color=xresource:i3xrocks.label.color
 
-# Show title of focused window
-[focused-window-name]
-label= 
+[metadesktops]
 interval=1
-short_length=30
-#filter_list=evince libreoffice # uncomment to show only for these window instances
+
+# Show title of focused window
+# [focused-window-name]
+# label= 
+# interval=1
+# short_length=30
+# filter_list=evince libreoffice # uncomment to show only for these window instances
 
 # Link to execute shortcuts.
 # [info]
 # full_text=xresource:i3xrocks.label.help
 # command=i3-msg -q exec /usr/bin/remontoire-toggle
+
+[mediaplayer2]
+interval=1
 
 [weather]
 interval=3600
@@ -52,8 +58,8 @@ interval=3600
 # nettraffic
 #
 # Displays network load
-[nettraffic]
-interval=10
+# [nettraffic]
+# interval=10
 
 # Wifi
 # _after_paste#
@@ -103,5 +109,7 @@ instance=BAT0
 # Date Time
 [time]
 interval=1
+
+
 
 

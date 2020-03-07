@@ -1,0 +1,7 @@
+#!/bin/sh
+
+LABEL_COLOR=${label_color:-$(xrescat i3xrocks.label.color "#7B8394")}
+VALUE_FONT=${font:-$(xrescat i3xrocks.value.font "Source Code Pro Medium 8")}
+METAS="$(cat $HOME/.config/regolith/meta/.vars/ws_str | tr -d '\n')"
+
+echo "<span font_desc=\"${VALUE_FONT}\" color=\"${LABEL_COLOR}\">${METAS}</span>"

@@ -60,12 +60,10 @@ if [ -z "$CHARGE_STATE" ]; then
 elif [ "$CHARGE_STATE" == "discharging" ]; then
 #  CHARGE_ICON=$(xrescat i3xrocks.label.dn D)
   CHARGE_ICON=""
-elif [ "$CHARGE_STATE" == "charging" ]; then
+else
 #  CHARGE_ICON=$(xrescat i3xrocks.label.up C)
   CHARGE_ICON=$(xrescat i3xrocks.label.batterycharging C)
   VALUE_COLOR=$(xrescat i3xrocks.nominal white)
-else
-  CHARGE_ICON=$(echo -e '\u2003')
 fi
 
 echo "<span color=\"${LABEL_COLOR}\">$CHARGE_ICON$LABEL_ICON</span><span font_desc=\"${VALUE_FONT}\" color=\"${VALUE_COLOR}\"> $BATT_PERCENT%</span>"

@@ -11,6 +11,7 @@ if [ ! -z "$ESSID" ]; then
     echo "<span font_desc=\"${VALUE_FONT}\" color=\"${VALUE_COLOR}\"> $ESSID</span>" # short text
 fi
 
-if [ ! -z "$button" ]; then
-    /usr/bin/gnome-control-center wifi
-fi
+case $BLOCK_BUTTON in
+  1) /usr/bin/gnome-control-center wifi ;;
+  2) /usr/bin/gnome-control-center network ;;
+esac

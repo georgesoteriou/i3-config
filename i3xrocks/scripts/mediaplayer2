@@ -24,26 +24,27 @@ case $STATUS in
 esac
 
 # get artist and title information
-ARTIST="$(playerctl metadata artist)"
-TITLE="$(playerctl metadata title)"
+ARTIST="$(playerctl metadata artist | cut -c -20)"
+TITLE="$(playerctl metadata title | cut -c -20)"
 
 # print resulting information (fulltext)
-echo "<span color=\"${LABEL_COLOR}\">${ICON}</span>\
+if [ ! -z "$TITLE" ]; then
+  echo "<span color=\"${LABEL_COLOR}\">${ICON}</span>\
 <span font_desc=\"${VALUE_FONT}\" color=\"${VALUE_COLOR}\"> \
-${ARTIST} - ${TITLE}</span>"
+${ARTIST}-${TITLE}</span>"
 
-# for shorttext, only print the appropriate glyph
-echo $ICON
+  # for shorttext, only print the appropriate glyph
+  echo $ICON
+fi
 
 # rudimentary controls via mouse clicks
 #
-# left click: send previous title signal
-# middle click: send play/pause signal
+# left click: send play/pause signal
+# middle click: send previous title signal
 # right click: send next title signal
 case $BLOCK_BUTTON in
-  1) playerctl previous ;;
-  2) playerctl play-pause ;;
+  1) playerctl play-pause ;;
+  2) playerctl previous ;;
   3) playerctl next ;;
 esac
-
 exit 0
