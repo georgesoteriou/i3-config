@@ -93,7 +93,7 @@ def readWsList(meta,overwrite):
     myoutline = sorted(outline, key = lambda a: int(a.split(":")[0]))
     for line in myoutline:
         a = line.split(":")
-        disp =  "" if (a[0] == meta) else ""
+        disp =  " " if (a[0] == meta) else ""
         if a[1] or a[0] == meta:
             statusline += "["+disp+a[0]+":"+a[1]+"]"
         # else:
@@ -140,7 +140,7 @@ if args.workspace is not None:
     meta = readMeta()
     workspace = args.workspace
     print("change meta workspace: " + meta)
-    cmd = 'i3-msg "workspace ' + meta + workspace + ';"'
+    cmd = 'i3-msg "workspace ' + meta + workspace + ":%s|%s" % (meta, workspace) + ';"'
     print(cmd)
     os.system(cmd)
 
@@ -149,11 +149,12 @@ if args.move_window is not None:
     meta = readMeta()
     print("move window between workspaces in current meta: " + meta)
     workspace = args.move_window
-    cmd = 'i3-msg "move container to workspace ' + meta + workspace + ';"'
+    cmd = 'i3-msg "move container to workspace ' + meta + workspace + ":%s|%s" % (meta, workspace) + ';"'
     print(cmd)
     os.system(cmd)
 
 #Move window in between metas to workspace 0
+# Not used
 if args.move_window_meta is not None:
     meta = args.move_window_meta
     print("move window to meta: " + meta)
@@ -176,14 +177,14 @@ if args.prev is not None:
     readWsList(meta,0)
     writeMeta(meta)
     # get current workspace number
-    subcmd = subprocess.Popen("i3-msg -t get_workspaces | jq -r 'map(select(.focused))[0].name'", stdout=subprocess.PIPE, shell=True)
+    subcmd = subprocess.Popen("i3-msg -t get_workspaces | jq -r 'map(select(.focused))[0].num'", stdout=subprocess.PIPE, shell=True)
     output, err = subcmd.communicate()
     returncode = subcmd.wait()
     workspace = 0
     if returncode == 0:
         workspace = "%s" % output.decode("utf-8").strip()[1]
     print("change to: " + meta + workspace)
-    cmd = 'i3-msg "workspace ' + meta + workspace + ';"'
+    cmd = 'i3-msg "workspace ' + meta + workspace + ":%s|%s" % (meta, workspace) + ';"'
     print(cmd)
     os.system(cmd)
 
@@ -194,14 +195,14 @@ if args.next is not None:
     readWsList(meta, 0)
     writeMeta(meta)
     # get current workspace number
-    subcmd = subprocess.Popen("i3-msg -t get_workspaces | jq -r 'map(select(.focused))[0].name'", stdout=subprocess.PIPE, shell=True)
+    subcmd = subprocess.Popen("i3-msg -t get_workspaces | jq -r 'map(select(.focused))[0].num'", stdout=subprocess.PIPE, shell=True)
     output, err = subcmd.communicate()
     returncode = subcmd.wait()
     workspace = 0
     if returncode == 0:
         workspace = "%s" % output.decode("utf-8").strip()[1]
     print("change to: ", meta,  workspace)
-    cmd = 'i3-msg "workspace ' + meta + workspace + ';"'
+    cmd = 'i3-msg "workspace ' + meta + workspace + ":%s|%s" % (meta, workspace) + ';"'
     print(cmd)
     os.system(cmd)
 

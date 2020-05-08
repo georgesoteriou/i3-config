@@ -28,15 +28,16 @@ markup=pango
 color=xresource:i3xrocks.value.color
 label_color=xresource:i3xrocks.label.color
 
-[metadesktops]
-interval=1
 
 # Show title of focused window
-# [focused-window-name]
-# label= 
-# interval=1
+[focused-window-name]
+label= 
+interval=1
 # short_length=30
 # filter_list=evince libreoffice # uncomment to show only for these window instances
+
+[metadesktops]
+interval=1
 
 # Link to execute shortcuts.
 # [info]

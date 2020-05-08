@@ -24,8 +24,8 @@ case $STATUS in
 esac
 
 # get artist and title information
-ARTIST="$(playerctl metadata artist | cut -c -20)"
-TITLE="$(playerctl metadata title | cut -c -20)"
+ARTIST="$(playerctl metadata artist | cut -c -15)"
+TITLE="$(playerctl metadata title | cut -c -30)"
 
 # print resulting information (fulltext)
 if [ ! -z "$TITLE" ]; then
